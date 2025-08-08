@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Drawing App</title>
+</head>
+
+<body>
+    <h2>Drawing App JS</h2>
+    <canvas id="testCanvas" height="800" width="1800" style="border: 1px solid #000;"></canvas>
+    <h2>Tools</h2>
+    <button id="toggleEraser">Eraser</button>
+    <span>Pen Size: </span>
+    <input type="number" value="2">
+    <input type="color">
+
+    <script>
+        const canvas = document.getElementById("testCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        canvas.addEventListener("mousedown", (e) => {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        })
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (!isDrawing) return;
+            console.log(e)
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        })
+
+        canvas.addEventListener("mouseup", () => isDrawing = false);
+        canvas.addEventListener("mouseleave", () => isDrawing = false);
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * 0.9;
+            canvas.height = window.innerHeight * 0.7;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+    </script>
+</body>
+
+</html>
