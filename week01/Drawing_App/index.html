@@ -13,14 +13,20 @@
     <h2>Tools</h2>
     <button id="toggleEraser">Eraser</button>
     <span>Pen Size: </span>
-    <input type="number" value="2">
-    <input type="color">
+    <input id="penSize" type="number" value="2">
+    <input id="penColor" type="color">
+    <button id="exportBtn">Export Image</button>
 
     <script>
         const canvas = document.getElementById("testCanvas");
         const ctx = canvas.getContext("2d");
 
+        const eraserBtn = document.getElementById("toggleEraser");
+        const penSize = document.getElementById("penSize");
+        const penColor = document.getElementById("penColor");
+
         let isDrawing = false;
+        let isEraser = false;
         let lastX = 0;
         let lastY = 0;
 
@@ -35,14 +41,28 @@
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
             ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.strokeStyle = "#000";
-            ctx.lineWidth = 2;
+            ctx.strokeStyle = isEraser ? "#fff" : penColor.value;
+            ctx.lineWidth = parseInt(penSize.value);
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
             ctx.stroke();
             [lastX, lastY] = [e.offsetX, e.offsetY];
         })
 
         canvas.addEventListener("mouseup", () => isDrawing = false);
         canvas.addEventListener("mouseleave", () => isDrawing = false);
+
+        eraserBtn.addEventListener("click",()=>{
+            isEraser = !isEraser;
+            eraserBtn.textContent = isEraser ? "Pen" : "Eraser";
+        })
+
+        document.getElementById("exportBtn").addEventListener("click",()=>{
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL("image/png")
+            link.download = "eiei.png";
+            link.click();
+        })
 
         function resizeCanvas() {
             canvas.width = window.innerWidth * 0.9;
