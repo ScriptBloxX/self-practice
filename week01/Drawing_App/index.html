@@ -9,7 +9,7 @@
 
 <body>
     <h2>Drawing App JS</h2>
-    <canvas id="testCanvas" height="800" width="1800" style="border: 1px solid #000;"></canvas>
+    <canvas id="testCanvas" height="800" width="1800" style="border: 1px solid #000;cursor: crosshair;"></canvas>
     <h2>Tools</h2>
     <button id="toggleEraser">Eraser</button>
     <span>Pen Size: </span>
@@ -41,7 +41,15 @@
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
             ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.strokeStyle = isEraser ? "#fff" : penColor.value;
+
+            if (isEraser){
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.strokeStyle = 'rgba(0,0,0,1)';
+            }else{
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = penColor.value;
+            }
+
             ctx.lineWidth = parseInt(penSize.value);
             ctx.lineCap = "round";
             ctx.lineJoin = "round";
@@ -55,11 +63,23 @@
         eraserBtn.addEventListener("click",()=>{
             isEraser = !isEraser;
             eraserBtn.textContent = isEraser ? "Pen" : "Eraser";
+            canvas.style.cursor = isEraser ? "cell" : "crosshair";
         })
 
         document.getElementById("exportBtn").addEventListener("click",()=>{
+
+            const exportCanvas = document.createElement('canvas');
+            exportCanvas.width = canvas.width;
+            exportCanvas.height = canvas.height;
+            const exportCtx = exportCanvas.getContext('2d');
+
+            exportCtx.fillStyle = "#ffffff";
+            exportCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+
+            exportCtx.drawImage(canvas, 0, 0);
+
             const link = document.createElement('a');
-            link.href = canvas.toDataURL("image/png")
+            link.href = exportCanvas.toDataURL("image/png")
             link.download = "eiei.png";
             link.click();
         })
