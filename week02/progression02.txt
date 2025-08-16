@@ -1,0 +1,7 @@
+16/8/2568
+comparison_obj
+
+วันนี้ได้ลองเขียนฟังก์ชันเปรียบเทียบ obj ใน js แบบ shallow กับ deep compare
+ได้รู้ว่า shallow compare จะเช็คแค่ lv บนสุดของ key และ value จะต้องเท่ากันแบบ strict equality (===) แต่ถ้า obj มี nested หรือ array ที่ค่าเหมือนกันแต่คนละ reference จะถือว่าเป็น false
+ส่วน deep compare ต้องเขียน recursive เช็คทุก level ของ nested obj และ array 
+และยังได้รู้ว่าต้องระวังเรื่อง null เพราะ typeof เป็น 'object' แต่ไม่ใช่ obj (typeof null ได้ออกมาเป็น object)
