@@ -1,0 +1,10 @@
+2/9/2568
+https://leetcode.com/problems/longest-substring-without-repeating-characters
+
+ในวันนี้ได้ทำโจทย์ leetcode Longest Substring Without Repeating Characters เพื่อหาความยาวของ substring ที่ไม่มีตัวอักษรภาษาอังกฤษซ้ำ ใน string
+ซึ่งใช้วิธี Sliding Window กับ Set ในการเก็บตัวอักษรที่เจอใน substring ปัจจุบัน
+
+สิ่งที่ได้เรียนรู้
+การใช้ Set ใน js
+การใช้ Math.max() เพื่อ set ค่าของความยาว substring ที่ยาวที่สุดในแต่ละรอบโดยเทียบค่าเก่ากับค่าใหม่
+ใช้วิธี Sliding Window ในการหา substring ที่ไม่มีตัวซ้ำในเวลาที่มีประสิทธิภาพ O(n)
