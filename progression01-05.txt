@@ -1,0 +1,30 @@
+Progression 01-05
+
+สรุปสิ่งที่ได้เรียนรู้ Week01 -> Week05
+
+Week 01 — Drawing App
+- งานที่ทำ: สร้างหน้า `index.html` สำหรับโปรเจค Drawing App (พื้นฐาน HTML/JS)
+- สิ่งที่เรียนรู้: การใช้งาน <canvas> เบื้องต้น, การจัดการ mouse event (mousedown/mousemove/mouseup)
+- ปัญหา/การแก้ไข: ปัญหาการกำหนด size Canvas ผ่าน CSS อาจทำให้ตำแหน่ง Mouse Offset ไม่ตรงกับ Canvas จริง ๆ ดังนั้นต้องตั้งขนาด Canvas ด้วย width และ height attribute แทน CSS เพื่อให้การคำนวณตำแหน่ง Mouse ถูกต้อง
+เมื่อเพิ่ม lineWidth แล้วเส้นที่วาดติดกันอาจมีรูปร่างเป็นเหลี่ยมๆ ซึ่งสามารถแก้ไขได้โดยการใช้ lineCap กำหนดลักษณะของหัวเส้น และ lineJoin กำหนดลักษณะการเชื่อมต่อระหว่างเส้น เพื่อให้เส้นมีความเรียบสวยงาม รวมถึงใช้ globalCompositeOperation = 'destination-out' ในการลบเส้นแทนการทับด้วยสีขาว
+
+Week 02 — Object Comparison (comparison_obj.js)
+- งานที่ทำ: ฝึกเขียนฟังก์ชันเปรียบเทียบวัตถุ (shallow vs deep comparison)
+- สิ่งที่เรียนรู้: ความแตกต่างระหว่างการเทียบค่าแบบ reference กับค่าแบบ deep, เทคนิค recursion สำหรับตรวจสอบ property ย่อย
+- ปัญหา/การแก้ไข: ต้องระวัง circular references
+
+Week 03 — Pagination (pagination.js)
+- งานที่ทำ: เขียน function จัดการ pagination สำหรับแบ่งหน้าแสดงผลข้อมูล
+- สิ่งที่เรียนรู้: การคำนวณ offset/limit, การออกแบบให้รองรับหน้าแรก/หน้าสุดท้าย
+
+Week 04 — Outliers Detection (findOutliers.js)
+- งานที่ทำ: เขียน function หา outliers จากชุดข้อมูลตัวเลข
+- สิ่งที่เรียนรู้: วิธีคำนวณ IQR (interquartile range) และการนำเกณฑ์ IQR ไปใช้คัดกรองค่า outlier
+
+Week 05 — LeetCode #3 (leetcode_3.js)
+- งานที่ทำ: แก้โจทย์ "Longest Substring Without Repeating Characters"
+- สิ่งที่เรียนรู้: เทคนิค sliding window, two-pointer pattern เพื่อลดความซ้ำซ้อน O(n)
+
+สรุป
+- ความคืบหน้า: พื้นฐาน HTML/Canvas, การจัดการข้อมูลด้วย JavaScript (object comparison, pagination, outlier detection) , sliding window
+- ทักษะที่ได้รับ: การออกแบบ function ให้ทนทานต่อ edge cases, การคิดแก้ปัญหาต่างๆ
